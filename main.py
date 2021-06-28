@@ -3,7 +3,8 @@ import pyttsx3 as ttx
 import pywhatkit
 import datetime
 import sys
-
+import pandas as pd
+import random
 
 listener = sr.Recognizer()
 engine = ttx.init()
@@ -24,6 +25,7 @@ def ecouter():
 	return command
 
 
+
 def lancer_assistant():
 	command = ecouter()
 	print(command)
@@ -38,6 +40,17 @@ def lancer_assistant():
 	elif 'heure' in command:
 		heure = datetime.datetime.now().strftime('%H:%M')
 		parler(' il est '+ heure)
+	elif 'blague' in command:
+		numero = random.randrange(0, 103)
+		blagues = pd.read_csv('./blagues/questions.csv')
+		blague = blagues.iloc[0, numero]
+		reponses = pd.read_csv('./blagues/reponses.csv')
+		reponse = reponses.iloc[0,numero]
+		print(blague)
+		parler(blague)
+		parler(reponse)
+		print(reponse)
+	
 	else:
 		parler("je ne comprend pas  ")
 		print("je ne comprend pas ")
