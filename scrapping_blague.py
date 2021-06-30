@@ -35,13 +35,16 @@ print(reponses)
 
 
 df_questions = pd.DataFrame(questions)
-df_questions = df_questions[::-1]
+df_questions = df_questions.values.reshape([103,1])
+df_questions = pd.DataFrame(df_questions)
+
 os.makedirs('blagues', exist_ok=True)
 df_questions.to_csv('blagues/questions.csv',index=False)
 
-"""
 
 df_reponses = pd.DataFrame(reponses)
+df_reponses = df_reponses.values.reshape(103,1)
+df_reponses = pd.DataFrame(df_reponses)  
 df_reponses.to_csv('blagues/reponses.csv',index=False)
 
-"""
+
