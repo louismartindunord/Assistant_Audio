@@ -21,7 +21,8 @@ def ecouter():
 		print("parlez maintenant")
 		voix=listener.listen(source)
 		command=listener.recognize_google(voix,language='fr-FR')
-		command.lower()
+		command = command.lower()
+		
 	return command
 
 
@@ -34,6 +35,8 @@ def lancer_assistant():
 		pywhatkit.playonyt(artiste, use_api=True)
 		print(artiste)
 		parler('je joue une chanson de  {}'.format(artiste))
+	elif 'bonjour' in command:
+		parler('bonjour ça va ?')
 	elif 'éteins-toi' in command:
 		parler("je m'éteint")
 		sys.exit()
